@@ -1,0 +1,29 @@
+{
+  "name": "pay4doc-the-poc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "init": "truffle init",
+    "testrpc": "testrpc",
+    "compile": "truffle compile",
+    "migrate": "truffle migrate",
+    "test-all": "concurrently --kill-others --names \"TESTRPC, TRUFFLETEST\" \"npm run testrpc && exit 0\" \"truffle test && exit 0\"",
+    "test": "truffle test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ethereum-development-brasil/pay4doc-the-poc.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ethereum-development-brasil/pay4doc-the-poc/issues"
+  },
+  "homepage": "https://github.com/ethereum-development-brasil/pay4doc-the-poc#readme",
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "ethereumjs-testrpc": "^4.1.1",
+    "truffle": "^3.4.9"
+  }
+}
