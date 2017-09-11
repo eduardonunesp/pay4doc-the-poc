@@ -51,8 +51,8 @@ contract('PayForDoc', accounts => {
       assert.equal(!!newContractFound, true, "New Contract isn't executed")
       return payForDoc.buyDocument(newContractFound.args.documentAddr, {from: accounts[1], value: 3})
     }).then(result => {
-      NewOwner = result.logs.find(log => log.event === 'NewOwner')
-      assert.equal(!!NewOwner, true, 'Cannot buy the document')
+      NewBuyer = result.logs.find(log => log.event === 'NewBuyer')
+      assert.equal(!!NewBuyer, true, 'Cannot buy the document')
       // console.log('transaction', JSON.stringify(result.logs, null, 2))
     })
   })

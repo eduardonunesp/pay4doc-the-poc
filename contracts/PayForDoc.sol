@@ -58,7 +58,7 @@ contract PayForDoc is Terminable {
 
   event NewDocument(address documentAddr, bytes32 title, bytes32 description, uint price);
   event StartBuyDocument(address buyerAddr, uint price);
-  event NewOwner(address documentAddr, address ownerAddr);
+  event NewBuyer(address documentAddr, address ownerAddr);
   event NotEnoughFounds(address buyerAddr, uint valueSent, uint documentPrice);
 
   function PayForDoc() {
@@ -75,11 +75,14 @@ contract PayForDoc is Terminable {
     // Adding the document on documents mapping
     documents[address(document)] = document;
 
+    // Set myself as owner
+    owners[msg.sender].push(document);
+
     // Dispatch event of a new document added
     NewDocument(address(document), title, description, price);
   }
 
-  function documentTitleByAddress(address documentAddr) returns (bytes32 title) {
+  function documentTitleByAddress(address documentAddr) constant returns (bytes32 title) {
     // get a document by document address
     title = documents[documentAddr].title();
   }
@@ -103,7 +106,7 @@ contract PayForDoc is Terminable {
       owners[msg.sender].push(document);
 
       // Dispatch event of a new owner added
-      NewOwner(documentAddr, msg.sender);
+      NewBuyer(documentAddr, msg.sender);
     } else {
       NotEnoughFounds(msg.sender, msg.value, document.price());
     }
